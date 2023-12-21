@@ -7,18 +7,9 @@ class Solution:
             graph[node1].append([node2, values[i]])
             graph[node2].append([node1, 1/values[i]])
 
-        def helper(node, target, visited, running_product):
-            if node == target:
-                return 1
-            visited.add(node)
-            for child, value in graph[node]:
-                if child not in visited:
-                    answer = helper(child, target, visited, running_product)
-                    if answer > 0:
-                        return float(answer * value)
-            return -1.000
                     
         def dfs(node, target, running, visited):
+            print(node, target, running, visited)
             if node == target:
                 return running
             for adjacent, multi in graph[node]:
