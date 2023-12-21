@@ -9,7 +9,6 @@ class Solution:
 
                     
         def dfs(node, target, running, visited):
-            print(node, target, running, visited)
             if node == target:
                 return running
             for adjacent, multi in graph[node]:
