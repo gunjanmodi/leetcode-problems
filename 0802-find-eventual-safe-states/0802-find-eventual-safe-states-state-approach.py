@@ -7,9 +7,11 @@ class Solution:
         color = [NON_VISITED for _ in range(n)]
 
         def helper(node):
-            if color[node] == INSIDE_RECURSION: return False
+            if color[node] == INSIDE_RECURSION:
+                return False
 
-            if color[node] == SAFE: return True # This condition added just to prevent TLE for some use cases. Code can be submitted with this line.
+            if color[node] == SAFE: # This condition added just to prevent TLE for some test cases.
+                return True # Code is correct without this too
 
             color[node] = INSIDE_RECURSION
 
