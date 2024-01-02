@@ -26,8 +26,17 @@ class Solution:
                     backtrack(i + 1)
                     partition[j] -= nums[i]
 
+                    # Important line, otherwise function will give TLE
                     if partition[j] == 0:
                         break
+
+                    """
+                    Explanation:
+                    If subSets[j] = 0, it means this is the first time adding values to that subset.
+                    If the backtrack search fails when adding the values to subSets[j] and subSets[j] remains 0, it will also fail for all subSets from subSets[j+1:].
+                    Because we are simply going through the previous recursive tree again for a different j+1 position.
+                    So we can effectively break from the for loop or directly return False.
+				    """
 
 
         backtrack(0)
