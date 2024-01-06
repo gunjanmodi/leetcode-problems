@@ -3,12 +3,10 @@ class Solution:
         strs.sort()
         first = strs[0]
         last = strs[-1]
-        c = 0
-
-        while c < len(first):
-            if first[c] == last[c]:
-                c += 1
-            else:
-                break
-
-return "" if c == 0 else first[:c]
+        
+        i = 0
+        while i < len(first) and first[i] == last[i]:
+            i += 1
+                
+        return "" if i == 0 else first[:i]
+        
