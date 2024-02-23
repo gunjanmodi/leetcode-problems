@@ -6,9 +6,9 @@ class Solution:
         smaller_right = self.next_smaller_right(heights, n)
 
         for i in range(n):
-            left_expan = i - smaller_left[i] - 1
-            right_exapan = smaller_right[i] - i - 1
-            area = (left_expan + right_exapan + 1) * heights[i]
+            left_expansion = i - smaller_left[i] - 1
+            right_exapansion = smaller_right[i] - i - 1
+            area = (left_expansion + right_exapansion + 1) * heights[i]
             max_area = max(max_area, area)
         return max_area
 
@@ -25,6 +25,7 @@ class Solution:
                 result[i] = stack[-1]
             
             stack.append(i)
+            
         return result
 
     def next_smaller_right(self, nums, n):
