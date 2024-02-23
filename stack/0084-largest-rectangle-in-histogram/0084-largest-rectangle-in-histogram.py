@@ -7,8 +7,8 @@ class Solution:
 
         for i in range(n):
             left_expansion = i - smaller_left[i] - 1
-            right_exapansion = smaller_right[i] - i - 1
-            area = (left_expansion + right_exapansion + 1) * heights[i]
+            right_expansion = smaller_right[i] - i - 1
+            area = (left_expansion + right_expansion + 1) * heights[i]
             max_area = max(max_area, area)
         return max_area
 
