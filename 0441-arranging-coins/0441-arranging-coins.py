@@ -11,7 +11,7 @@ class Solution:
             return True
 
         while left < right:
-            mid = left + (right - left) // 2
+            mid = (left + right) >> 1
             if can_be_answer(mid):
                 result = mid
                 left = mid + 1
