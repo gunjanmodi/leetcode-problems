@@ -13,7 +13,6 @@ class Solution:
             next_node = node.next
             if prev_node.val == node.val:
                 prev_node.next = next_node
-                node.next = None
             else:
                 prev_node = node
             node = next_node
