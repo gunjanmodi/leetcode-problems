@@ -4,20 +4,21 @@ class LRUCache:
         self.dict, self.capacity, self.list = {}, capacity, DoublyLinkedList()
         
     def get(self, key: int) -> int:
-        if key not in self.dict:return -1
+        if key not in self.dict: return -1
         self.updateNode(self.dict[key])
         return self.dict[key].val
         
     def put(self, key: int, value: int) -> None:
         if key in self.dict:
             self.dict[key].val = value
-            node = self.dict[key]
-            self.list.moveNodeToTail(node)
+            self.updateNode(self.dict[key])
         else:
             self.makeSpaceIfListIsFull()
-            node = ListNode(key, value)
-            self.dict[key] = node
-            self.list.addNodeToTail(node)
+            self.dict[key] = ListNode(key, value)
+            self.addNode(self.dict[key])
+
+    def addNode(self, node) -> None:
+        self.list.addNodeToTail(node)
 
     def updateNode(self, node) -> None:
         self.list.moveNodeToTail(node)
@@ -33,15 +34,6 @@ class DoublyLinkedList:
         self.head = None
         self.tail = None
 
-    def addNodeToTail(self, node) -> None:
-        if not self.head:
-            self.head = node
-            self.tail = node
-        else:
-            self.tail.next = node
-            node.prev = self.tail
-            self.tail = node
-
     def removeHead(self) -> None:
         newHead = self.head.next
         self.head.next = None
@@ -49,16 +41,29 @@ class DoublyLinkedList:
             newHead.prev = None
         self.head = newHead
 
+    def addNodeToTail(self, node) -> None:
+        if not self.head:
+            self.setHead(node)
+        self.setTail(node)
+
     def moveNodeToTail(self, node) -> None:
         if not node.next:
             return
-
         current_prev, current_next = node.prev, node.next
         if not current_prev:
             self.head = node.next
         else:
             current_prev.next = current_next
         current_next.prev = current_prev
+        self.setTail(node)
+
+    def setHead(self, node):
+        self.head = node
+
+    def setTail(self, node):
+        if not self.tail:
+            self.tail = node
+            return
         self.tail.next = node
         node.prev = self.tail
         node.next = None
